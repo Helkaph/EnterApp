@@ -1,0 +1,14 @@
+﻿<Window x:Class="EnterApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EnterApp"
+        mc:Ignorable="d"
+        Title="Вход в систему" Height="300" Width="400">
+    <Grid>
+        <TextBlock Text="Введите ваш идентификатор:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 20, 0, 0" FontFamily="Times New Roman" FontSize="16" />
+        <TextBox Name="UniqueIdTextBox" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, -20, 0, 0" />
+        <Button Content="Вход" x:Name="LoginButton" Width="150" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Background="GhostWhite" Margin="0, 100, 0, 0" FontFamily="Times New Roman" FontSize="14" Click="LoginButton_Click" />
+    </Grid>
+</Window>

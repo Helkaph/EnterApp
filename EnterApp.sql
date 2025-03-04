@@ -1,0 +1,34 @@
+CREATE DATABASE EnterApp
+USE EnterApp
+
+CREATE TABLE Clients (
+id INT PRIMARY KEY IDENTITY,
+unique_id VARCHAR(8) NOT NULL UNIQUE,
+[name] VARCHAR(40) NOT NULL,
+authorized BIT DEFAULT 0,
+[role] VARCHAR(15) NOT NULL
+)
+CREATE TABLE Deleted_Clients
+(
+id INT PRIMARY KEY IDENTITY,
+unique_id VARCHAR(8) NOT NULL,
+[name] VARCHAR(40) NOT NULL,
+[role] VARCHAR(15) NOT NULL,
+deleted_at DATETIME NOT NULL
+)
+CREATE TABLE Logs (
+id INT PRIMARY KEY IDENTITY,
+UserName VARCHAR(40) NOT NULL DEFAULT 'unauthorized',
+UserRole VARCHAR(15) NOT NULL DEFAULT 'unauthorized',
+ActionTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+[Action] VARCHAR(80) NOT NULL,
+IsError BIT NOT NULL DEFAULT 0
+)
+INSERT INTO Clients(unique_id, [name], [role])
+VALUES('Admin123', 'Admin', 'Admin')
+SELECT * FROM Deleted_Clients
+
+SELECT * FROM Clients
+
+ALTER TABLE Clients
+DROP COLUMN Photo 
