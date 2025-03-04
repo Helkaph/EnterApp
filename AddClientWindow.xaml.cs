@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using EnterApp.Data;
 using EnterApp.Models;
 using EnterApp.Services;
 using Microsoft.Extensions.Caching;
@@ -9,10 +10,12 @@ namespace EnterApp
     public partial class AddClientWindow : Window
     {
         private readonly ClientService _clientService;
+        private readonly ApplicationDbContext _context;
         public AddClientWindow(IMemoryCache cache)
         {
             InitializeComponent();
             _clientService = new ClientService(App.DbContext, cache);
+            _context = App.DbContext;
         }
 
         private async void AddClientButton_Click(object sender, RoutedEventArgs e)
@@ -29,6 +32,11 @@ namespace EnterApp
             if (uniqueId.Length != 8)
             {
                 MessageBox.Show("Длина идентификатора должна быть 8 символов!");
+                return;
+            }
+            if (_context.Clients.FirstOrDefault(c => c.Unique_Id == uniqueId) != null)
+            {
+                MessageBox.Show("Пользователь с таким идентификатором уже существует.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             var newClient = new Client
